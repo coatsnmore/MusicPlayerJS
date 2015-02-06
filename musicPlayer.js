@@ -35,7 +35,6 @@ var MusicPlayer = function() {
 
 	var playNote = function() {
 		debug('song: ' + _song);
-		debug('index: ' + _index);
 		var note = _song[_index]
 		if (note) {
 			makeSound(note[0], note[1], note[2]);
@@ -62,13 +61,38 @@ var MusicPlayer = function() {
 		_instrument = Synth.createInstrument(newInstrument);
 	}
 
-	var changeSong = function(newSong) {
-		debug('changing song');
+	var changeSong = function(newSongString) {
+		_song = createSong(newSongString);
+	}
+	
+	var load = function(newSong){
 		_song = newSong;
+	}
+	
+	/**
+	 * Assumes input of array of note "note, interval, seconds,note,inteval,seconds"
+	 * 
+	 * Returns array of [note, inteval, seconds]
+	 */
+	function createSong(songString){
+		var newSong = [], size = 3;
+		var songArray = songString.split(',');
+		
+		while (songArray.length > 0 && songArray.length % size == 0){
+			debug('songArray: ' + songArray);
+		    newSong.push(songArray.splice(0, size));
+		    debug('songArray after splice: ' + songArray);
+		    debug('newSong: ' + songArray);
+		};
+		debug('newSong: ' + newSong);
+		
+		return newSong;
 	}
 
 	function makeSound(note, interval, seconds) {
-		debug('playing..');
+		debug('note: ' + note);
+		debug('interval: ' + interval);
+		debug('seconds: ' + seconds);
 		_instrument.play(note, interval, seconds);
 	}
 
@@ -92,6 +116,7 @@ var MusicPlayer = function() {
 		builtInSongs : builtInSongs,
 		defaultRhythm : defaultRhythm,
 		defaultInstrument : defaultInstrument,
-		defaultMelody : defaultMelody
+		defaultMelody : defaultMelody,
+		load : load
 	}
 };
