@@ -11,12 +11,22 @@ module.exports = function(grunt) {
 						src : 'src/<%= pkg.name %>.js',
 						dest : 'build/<%= pkg.name %>.min.js'
 					}
+				},
+				jasmine : {
+					player : {
+						src : 'src/**/*.js',
+						options : {
+							specs : 'spec/*Spec.js',
+							helpers : 'spec/*Helper.js'
+						}
+					}
 				}
 
 			});
 
 	// load
 	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-contrib-jasmine');
 
 	// register
 	grunt.registerTask('default', [ 'uglify' ]);
