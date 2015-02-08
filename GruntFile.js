@@ -17,7 +17,28 @@ module.exports = function(grunt) {
 						src : 'src/**/*.js',
 						options : {
 							specs : 'spec/*Spec.js',
-							helpers : 'spec/*Helper.js'
+							helpers : 'spec/*Helper.js',
+							template: require('grunt-template-jasmine-istanbul'),
+							templateOptions: {
+								coverage: 'spec/reports/coverage.json',
+								report: [
+									{
+										type: 'html',
+										options: {
+											dir: 'spec/reports/html'
+										}
+									},
+									{
+										type: 'cobertura',
+										options: {
+											dir: 'spec/reports/cobertura'
+										}
+									},
+									{
+										type: 'text-summary'
+									}
+								]
+							}
 						}
 					}
 				}
