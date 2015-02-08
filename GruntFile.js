@@ -18,6 +18,8 @@ module.exports = function(grunt) {
 						options : {
 							specs : 'spec/*Spec.js',
 							helpers : 'spec/*Helper.js',
+							outfile: 'spec/reports/_SpecRunner.html',
+							keepRunner: 'true',  // keep SpecRunner/outfile file
 							template: require('grunt-template-jasmine-istanbul'),
 							templateOptions: {
 								coverage: 'spec/reports/coverage.json',
