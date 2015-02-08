@@ -3,7 +3,7 @@
 /**
  * Right now assumes 4/4 Time signature and all tracks of same length and only quarter notes or larger, whoops
  */
-var MusicPlayer = function() {
+var MusicPlayer = function () {
 	// songs
 	var defaultMelody = [ [ 'C', 4, 1 ],[ 'A', 4, 1 ],[ 'B', 4, 1 ],[ 'E', 4, 1 ]];
 	var defaultRhythm = [ [ 'G', 3, 2 ], null, [ 'D', 3, 2 ], null ];
